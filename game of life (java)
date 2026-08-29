@@ -1,0 +1,122 @@
+import java.io.*;
+class nigger
+{
+ public static void main(String ab[])throws Exception
+ {
+  DataInputStream ob=new DataInputStream(System.in);
+  String s="";
+  char c=' ';
+  int x=0,y=0,t,z=0,n=1,p,q;
+  System.out.println("Enter the size of grid");
+  p=Integer.parseInt(ob.readLine());
+  q=Integer.parseInt(ob.readLine());
+  int k[][]=new int[p][q];
+  System.out.println("Enter the number of alive cells");
+  n=Integer.parseInt(ob.readLine());
+  for(x=0;x<p;x++)
+  {
+   for(y=0;y<q;y++)
+   k[x][y]=0;
+  }
+  System.out.println("Enter the coordinates of alive cells");
+  for(t=0;t<n;t++)
+  {
+   s=ob.readLine();
+   for(z=0;z<s.length()-1;z++)
+   {   
+    c=s.charAt(z);
+    if(c==',')
+    {
+     x=Integer.parseInt(s.substring(0,z));
+     y=Integer.parseInt(s.substring(z+1,(s.length())));
+    }
+   }
+   k[x-1][y-1]=1;
+  }
+  for(x=0;x<p;x++)
+  {
+   for(y=0;y<q;y++)
+   System.out.print(k[x][y]);
+   System.out.println();
+  }
+  System.out.println();
+  while(n!=0)
+  {
+   n=0;
+   for(x=0;x<p;x++)
+   {
+    for(y=0;y<q;y++)
+    {
+     z=0;
+     if(x!=0)
+     {
+      if(y!=0)
+      {
+       if(k[x-1][y-1]==1)
+       z++;
+      }
+      if(k[x-1][y]==1)
+      z++;
+      if(y!=q-1)
+      {
+       if(k[x-1][y+1]==1)
+       z++;
+      }
+     }
+     if(y!=0)
+     {   
+      if(k[x][y-1]==1)
+      z++;
+     }
+     if(y!=q-1)
+     {
+      if(k[x][y+1]==1)
+       z++;
+     }
+     if(x!=p-1)
+     {
+      if(y!=0)
+      {
+       if(k[x+1][y-1]==1)
+       z++;
+      }
+      if(k[x+1][y]==1)
+      z++;
+      if(y!=q-1)
+      {
+       if(k[x+1][y+1]==1)
+       z++; 
+      }
+     }
+     if(k[x][y]==0)
+     {
+      if(z==3)
+      {
+       k[x][y]=1;
+       n++;
+      }
+     }
+     if(k[x][y]==1)
+     {
+      if(z>3)
+      {
+       k[x][y]=0;
+       n++;
+      }
+      if(z<2)
+      {
+       k[x][y]=0;
+       n++;
+      }
+     }
+    }
+   }
+  }
+  for(x=0;x<p;x++)
+  {
+   for(y=0;y<q;y++)
+   System.out.print(k[x][y]);
+   System.out.println();
+  }
+ }
+}
